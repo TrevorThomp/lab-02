@@ -21,6 +21,7 @@ Image.prototype.render = function() {
   $imageClone.attr('class', this.title);
   $imageClone.appendTo('main');
 
+
   $('#form').append(
     $('<option></option>')
       .attr('value', this.keyword)
