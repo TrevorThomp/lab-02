@@ -18,10 +18,12 @@ Actual time needed to complete: 10 minutes to complete feature.
 
 Number and name of feature: Feature #2:  Filter Images
 
-Estimate of time needed to complete: 15 minutes
+Estimate of time needed to complete: 20 minutes
 
-Start time: 4:30pm
+Start time: 7:55am
 
-Finish time: 6:30pm
+Finish time: 8:10am
 
-Actual time needed to complete: 10 minutes to complete feature.
+Actual time needed to complete: 15 minutes to complete feature.
+
+### Feature #3: Style the Application
