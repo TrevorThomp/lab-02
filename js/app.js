@@ -25,6 +25,16 @@ Image.prototype.render = function() {
     $('<option></option>')
       .attr('value', this.keyword)
       .text(this.keyword));
+
+  // Loop attributed by https://stackoverflow.com/questions/23729456/how-to-remove-duplicate-dropdown-option-elements-with-same-value
+  let usedNames = {};
+  $('#form > option').each(function () {
+    if(usedNames[this.text]) {
+      $(this).remove();
+    } else {
+      usedNames[this.text] = this.value;
+    }
+  });
 };
 
 Image.getJson = () => {
