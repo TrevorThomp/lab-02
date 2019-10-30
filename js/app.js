@@ -45,7 +45,7 @@ $(`select[name='images'`).on('change', function() {
   let $selectedImage = $(this).val();
   $('h2').hide();
   $('img').hide();
-  $(`section[class='${$selectedImage}'] img`).show();
+  $(`section[class='${$selectedImage}'] img, section[class='${$selectedImage}'] h2`).show();
 });
 
 $(() => Image.getJson());
