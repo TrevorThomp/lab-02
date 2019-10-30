@@ -27,3 +27,13 @@ Finish time: 8:10am
 Actual time needed to complete: 15 minutes to complete feature.
 
 ### Feature #3: Style the Application
+
+Number and name of feature: Feature #2:  Styling
+
+Estimate of time needed to complete: 30 minutes
+
+Start time: 8:15am
+
+Finish time: 8:50am
+
+Actual time needed to complete: 35 minutes to complete feature.
