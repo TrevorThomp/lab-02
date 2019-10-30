@@ -12,9 +12,7 @@ Image.allImages = [];
 
 Image.prototype.render = function() {
   let imageClone = $('#photo-template').clone();
-  console.log(imageClone)
   let $imageClone = $(imageClone[0].content);
-  console.log($imageClone)
 
   $imageClone.find('h2').text(this.title);
   $imageClone.find('img').attr('src', this.image_url);
@@ -22,6 +20,11 @@ Image.prototype.render = function() {
   $imageClone.attr('class', this.title);
 
   $imageClone.appendTo('main');
+
+  $('#form').append(
+    $('<option></option>').attr('value', this.keyword).text(this.keyword));
+
+  $imageClone.appendTo('select');
 }
 
 Image.getJson = () => {
