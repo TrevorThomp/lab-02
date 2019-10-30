@@ -17,6 +17,7 @@ Image.prototype.render = function() {
   $imageClone.find('h2').text(this.title);
   $imageClone.find('img').attr('src', this.image_url);
   $imageClone.find('p').text(this.hobbies);
+  $imageClone.find('section').attr('class', this.keyword);
   $imageClone.attr('class', this.title);
   $imageClone.appendTo('main');
 
@@ -44,11 +45,7 @@ $(`select[name='images'`).on('change', function() {
   let $selectedImage = $(this).val();
   $('h2').hide();
   $('img').hide();
-  Image.allImages.forEach((element) => {
-    if ($selectedImage === element.keyword) {
-      //TODO: Complete this Feature 2
-    }
-  })
+  $(`section[class='${$selectedImage}'] img`).show();
 });
 
 $(() => Image.getJson());
