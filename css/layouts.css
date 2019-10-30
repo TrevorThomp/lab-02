@@ -1,0 +1,15 @@
+header {
+  text-align: center;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+header h1 {
+  font-size: 2em;
+  padding-bottom: 10px;
+}
+
+#form {
+  width: 20%;
+  height: 30px;
+}
