@@ -12,7 +12,9 @@ Image.allImages = [];
 
 Image.prototype.render = function() {
   let imageClone = $('#photo-template').clone();
+  console.log(imageClone)
   let $imageClone = $(imageClone[0].content);
+  console.log($imageClone)
 
   $imageClone.find('h2').text(this.title);
   $imageClone.find('img').attr('src', this.image_url);
