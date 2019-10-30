@@ -28,7 +28,7 @@ Actual time needed to complete: 15 minutes to complete feature.
 
 ### Feature #3: Style the Application
 
-Number and name of feature: Feature #2:  Styling
+Number and name of feature: Feature #3:  Style the Application
 
 Estimate of time needed to complete: 30 minutes
 
@@ -37,3 +37,15 @@ Start time: 8:15am
 Finish time: 8:50am
 
 Actual time needed to complete: 35 minutes to complete feature.
+
+### STRETCH GOAL Feature#4: Sort the Images
+
+Number and name of feature: Feature #4:  Sort the Images
+
+Estimate of time needed to complete: 60 minutes
+
+Start time: 8:50am
+
+Finish time: 11:00am
+
+Actual time needed to complete: 2 hours and 10 minutes to complete feature.
