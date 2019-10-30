@@ -1,0 +1,45 @@
+@import url('reset.css');
+@import url('layouts.css');
+
+* {
+  font-family: 'Staatliches', cursive;
+  letter-spacing: 1px;
+}
+
+header {
+  text-align: center;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+header h1 {
+  font-size: 2em;
+  padding-bottom: 10px;
+}
+
+#form {
+  width: 20%;
+  height: 30px;
+}
+
+main {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+section {
+  width: 32%;
+  padding-bottom: 1%; 
+  margin-bottom: 1%; 
+  text-align: center;
+}
+
+h2 {
+  padding-bottom: 5px;
+}
+
+img {
+  width: 50%;
+  height: 200px;
+}
