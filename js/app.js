@@ -6,9 +6,12 @@ function Image(img) {
   this.description = img.description;
   this.keyword = img.keyword;
   this.horns = img.horns;
+  this.removeApostrophe = this.title.replace(/'/g, '');
+  this.removeSpace = this.removeApostrophe.replace(/ /g, '');
 }
 
 Image.allImages = [];
+
 
 Image.prototype.render = function() {
   let imageClone = $('#photo-template').clone();
@@ -16,20 +19,30 @@ Image.prototype.render = function() {
 
   $imageClone.find('h2').text(this.title);
   $imageClone.find('img').attr('src', this.image_url);
-  $imageClone.find('p').text(this.hobbies);
-  $imageClone.find('section').attr('class', this.keyword);
+  $imageClone.find('p').text(`Number of Horns: ${this.horns}`);
+  $imageClone.find('section').addClass(`${this.keyword} ${this.horns} ${this.removeSpace}`)
   $imageClone.attr('class', this.title);
   $imageClone.appendTo('main');
 
 
-  $('#form').append(
+  $('#keyword-option').append(
     $('<option></option>')
       .attr('value', this.keyword)
       .text(this.keyword));
 
+  $('#title-option').append(
+    $('<option></option>')
+      .attr('value', this.removeSpace)
+      .text(this.title));
+
+  $('#horn-option').append(
+    $('<option></option>')
+      .attr('value', this.horns)
+      .text(this.horns));
+
   // Loop attributed by https://stackoverflow.com/questions/23729456/how-to-remove-duplicate-dropdown-option-elements-with-same-value
   let usedNames = {};
-  $('#form > option').each(function () {
+  $('#form option').each(function () {
     if(usedNames[this.text]) {
       $(this).remove();
     } else {
@@ -55,7 +68,7 @@ Image.loadImages = () => {
 $(`select[name='images'`).on('change', function() {
   let $selectedImage = $(this).val();
   $('section').hide();
-  $(`section[class='${$selectedImage}']`).show();
+  $(`section.${$selectedImage}`).show();
 });
 
 $(() => Image.getJson());
