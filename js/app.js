@@ -129,6 +129,22 @@ $('#close').on('click', function() {
   $('#lightbox-modal').fadeOut();
 })
 
+// Search bar functionality
+$('#searchBar').on('keyup', () => {
+  const filter = $('#searchBar').val().toUpperCase();
+  const section = $('section');
+
+  // Loops through and collects classNames and compares to searchbar value
+  for (let i = 0; i < section.length; i++) {
+    let sectionInfo = section[i].getAttribute('class');
+    if (sectionInfo.toUpperCase().indexOf(filter) > -1) {
+      section[i].style.display = '';
+    } else {
+      section[i].style.display = 'none'
+    }
+  }
+})
+
 // Document ready function
 $(document).ready(function() {
   Image.getJsonPageOne();
