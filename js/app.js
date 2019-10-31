@@ -1,5 +1,13 @@
 'use strict';
 
+// Navigation Handler
+$('nav a').on('click', function() {
+  let $pageChoice = $(this).data('tab');
+  console.log('Clicked', $pageChoice)
+  $('.tab-content').hide();
+  $('#' + $pageChoice).fadeIn();
+})
+
 // Image constructor function
 function Image(img) {
   this.image_url = img.image_url;
@@ -62,14 +70,13 @@ Image.getJson = () => {
       });
     })
     .then(Image.loadImages);
-  console.log(Image.loadImages())
 };
 
 // Loops through array of images and renders each one
 Image.loadImages = () => {
   Image.allImages.forEach(images => {
     images.render();
-    $('main').append(images.toHtml());
+    $('#pageOne').append(images.toHtml());
   })
 }
 
@@ -98,4 +105,7 @@ $('#close').on('click', function() {
 })
 
 // Document ready function
-$(() => Image.getJson());
+$(document).ready(function() {
+  Image.getJson();
+  $('.tab-content').hide();
+});
