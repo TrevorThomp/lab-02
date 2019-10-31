@@ -21,7 +21,7 @@ Image.prototype.render = function() {
   let $imageClone = $(imageClone[0].content);
 
   $imageClone.find('h2').text(this.title);
-  $imageClone.find('img').attr('src', this.image_url);
+  $imageClone.find('img').attr({'src': this.image_url, 'class': 'lightbox'});
   $imageClone.find('p').text(`Number of Horns: ${this.horns}`);
   $imageClone.find('section').addClass(`${this.keyword} ${this.horns} ${this.removeSpace}`)
   $imageClone.attr('class', this.title);
@@ -78,6 +78,15 @@ $(`select[name='images'`).on('change', function() {
   let $selectedImage = $(this).val();
   $('section').hide();
   $(`section.${$selectedImage}`).show();
+});
+
+// jQuery lightbox trigger
+$('.lightbox').click(function() {
+  $('#lightbox').addClass('open');
+})
+
+$('#close').click(function() {
+  $('#lightbox').removeClass('open')
 });
 
 // Document ready function
