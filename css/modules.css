@@ -1,32 +1,37 @@
-#lightbox {
+#lightbox-modal {
   position:fixed;
   top:0; 
   left:0; 
   width:100%; 
   height:100%; 
-  background:rgba(0,0,0,.7);
+  background:rgba(0, 0, 0, 0.9);
   text-align: center;
   display: none;
+  z-index: 5;
 }
 
-#lightbox.open {
-  display: block;
-}
-
-#lightbox p {
+#lightbox-modal p {
   text-align:right; 
   color:#fff; 
   margin-right:20px; 
   font-size:12px; 
 }
 
-#lightbox img {
-  box-shadow:0 0 25px #111;
-  max-width: 940px;
-  margin-top: 25%;
+#lightbox-modal #content {
+  background-color: white;
+  width: 60%;
+  height: 50%;
+  margin: auto;
+  margin-top: 200px;
 }
 
-#close{
+#lightbox-modal img {
+  box-shadow:0 0 25px #111;
+  max-width: 940px;
+  margin: 20% 0;
+}
+
+#close {
 	position:absolute;
 	right:20px;
 	top:20px;
