@@ -20,7 +20,9 @@ function Image(img) {
   this.removeSpace = this.removeApostrophe.replace(/ /g, '');
 }
 
+// Array that holds Page 1 objects
 Image.allImagesPageOne = [];
+// Array that holds Page 2 objects
 Image.allImagesPageTwo = [];
 
 // Handlebar template compiler
@@ -75,6 +77,7 @@ Image.getJsonPageOne = () => {
     .then(Image.loadImagesPageOne);
 };
 
+// Retrieve JSON data from page-2.json and push into array
 Image.getJsonPageTwo = () => {
   $.get('../data/page-2.json')
     .then(data => {
@@ -88,15 +91,14 @@ Image.getJsonPageTwo = () => {
 // Loops through array of images and renders each one
 Image.loadImagesPageOne = () => {
   Image.allImagesPageOne.forEach(images => {
-    $('#form').val(0);
     images.selectMenu();
     $('#pageOne').append(images.toHtml());
   })
 }
 
+// Loops through array of images and renders each one
 Image.loadImagesPageTwo = () => {
   Image.allImagesPageTwo.forEach(images => {
-    $('#form').val(0);
     images.selectMenu();
     $('#pageTwo').append(images.toHtml());
   })
@@ -109,7 +111,7 @@ $(`select[name='images'`).on('change', function() {
   $(`section.${$selectedImage}`).show();
 });
 
-// jQuery lightbox trigger
+// jQuery modal trigger
 $('main').on('click', '.sourceImg', function(e) {
   e.preventDefault();
   let imgSource = $(this).attr('src');
@@ -122,6 +124,7 @@ $('main').on('click', '.sourceImg', function(e) {
   $('#lightbox-modal').fadeIn();
 })
 
+// Closes modal on click event
 $('#close').on('click', function() {
   $('#lightbox-modal').fadeOut();
 })
