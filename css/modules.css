@@ -1,3 +1,29 @@
+#navigation {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+#navigation a {
+  text-decoration: none;
+  font-size: 1.2em;
+  color: black;
+  transition:  0.2s ease-in-out;
+  border-radius: 5px;
+  padding: 5px;
+}
+
+#navigation a:hover {
+  color: rgb(66, 50, 170);
+}
+
+#navigation li {
+  transition: 1s;
+}
+
+#navigation li:hover {
+  transform: scale(1.5) rotate(360deg);
+}
+
 #lightbox-modal {
   position:fixed;
   top:0; 
