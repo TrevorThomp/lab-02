@@ -15,18 +15,14 @@ function Image(img) {
 
 Image.allImages = [];
 
+Image.prototype.toHtml = function() {
+  let template = $('#photo-template').html();
+  let templateRender = Handlebars.compile(template);
+  return templateRender(this);
+}
+
 // Image render function
 Image.prototype.render = function() {
-  let imageClone = $('#photo-template').clone();
-  let $imageClone = $(imageClone[0].content);
-
-  $imageClone.find('h2').text(this.title);
-  $imageClone.find('img').attr({'src': this.image_url, 'class': 'sourceImg', 'alt': this.title});
-  $imageClone.find('p').text(`Number of Horns: ${this.horns}`);
-  $imageClone.find('section').addClass(`${this.keyword} ${this.horns} ${this.removeSpace}`)
-  $imageClone.attr('class', this.title);
-  $imageClone.appendTo('main');
-
   // Append keywords to specific optgroup
   $('#keyword-option').append(
     $('<option></option>')
@@ -66,11 +62,15 @@ Image.getJson = () => {
       });
     })
     .then(Image.loadImages);
+  console.log(Image.loadImages())
 };
 
 // Loops through array of images and renders each one
 Image.loadImages = () => {
-  Image.allImages.forEach(image => image.render());
+  Image.allImages.forEach(images => {
+    images.render();
+    $('main').append(images.toHtml());
+  })
 }
 
 // Displays images based on user selected option
