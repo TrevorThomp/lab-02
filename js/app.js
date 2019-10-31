@@ -94,7 +94,7 @@ $('main').on('click', '.sourceImg', function(e) {
 })
 
 $('#close').on('click', function() {
-  $('#lightbox-modal').hide();
+  $('#lightbox-modal').fadeOut();
 })
 
 // Document ready function
