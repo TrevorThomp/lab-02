@@ -4,7 +4,7 @@
   left:0; 
   width:100%; 
   height:100%; 
-  background:rgba(0,0,0,.7);
+  background:rgba(0, 0, 0, 0.9);
   text-align: center;
   display: none;
   z-index: 5;
@@ -17,10 +17,18 @@
   font-size:12px; 
 }
 
+#lightbox-modal #content {
+  background-color: white;
+  width: 60%;
+  height: 50%;
+  margin: auto;
+  margin-top: 200px;
+}
+
 #lightbox-modal img {
   box-shadow:0 0 25px #111;
   max-width: 940px;
-  margin-top: 25%;
+  margin: 20% 0;
 }
 
 #close {

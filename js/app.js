@@ -84,9 +84,15 @@ $(`select[name='images'`).on('change', function() {
 $('main').on('click', '.sourceImg', function(e) {
   e.preventDefault();
   let imgSource = $(this).attr('src');
-  console.log(imgSource)
+  let imgParent = $(this).parent();
+  let modalTitle = $(imgParent).find('h2').text();
+  let modalDesc = $(imgParent).find('p').text();
+  console.log(imgParent)
+  console.log(modalDesc)
+  $('#modalTitle').text(modalTitle);
+  $('#modalDesc').text(modalDesc);
   $('#modalImg').attr('src', imgSource);
-  $('#lightbox-modal').show();
+  $('#lightbox-modal').fadeIn();
 })
 
 $('#close').on('click', function() {
