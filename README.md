@@ -49,3 +49,17 @@ Start time: 8:50am
 Finish time: 11:00am
 
 Actual time needed to complete: 2 hours and 10 minutes to complete feature.
+
+# Lab-03
+
+### Feature#1: Pagination 
+
+Number and name of feature: Feature #1: Pagination
+
+Estimate of time needed to complete: 10 minutes
+
+Start time: 10:30pm
+
+Finish time: 10:45pm
+
+Actual time needed to complete: 15 minutes to complete feature.
