@@ -1,5 +1,12 @@
 'use strict';
 
+// Navigation Handler
+$('nav a').on('click', function() {
+  let $pageChoice = $(this).data('tab');
+  $('.tab-content').hide();
+  $('#' + $pageChoice).fadeIn();
+})
+
 // Image constructor function
 function Image(img) {
   this.image_url = img.image_url;
@@ -13,16 +20,18 @@ function Image(img) {
   this.removeSpace = this.removeApostrophe.replace(/ /g, '');
 }
 
-Image.allImages = [];
+Image.allImagesPageOne = [];
+Image.allImagesPageTwo = [];
 
+// Handlebar template compiler
 Image.prototype.toHtml = function() {
   let template = $('#photo-template').html();
   let templateRender = Handlebars.compile(template);
   return templateRender(this);
 }
 
-// Image render function
-Image.prototype.render = function() {
+// Select option Render
+Image.prototype.selectMenu = function() {
   // Append keywords to specific optgroup
   $('#keyword-option').append(
     $('<option></option>')
@@ -53,23 +62,43 @@ Image.prototype.render = function() {
   });
 };
 
-// Retrieve JSON data and push into array
-Image.getJson = () => {
+
+
+// Retrieve JSON data from page-1.json and push into array
+Image.getJsonPageOne = () => {
   $.get('../data/page-1.json')
     .then(data => {
       data.forEach(item => {
-        Image.allImages.push(new Image(item))
+        Image.allImagesPageOne.push(new Image(item))
       });
     })
-    .then(Image.loadImages);
-  console.log(Image.loadImages())
+    .then(Image.loadImagesPageOne);
+};
+
+Image.getJsonPageTwo = () => {
+  $.get('../data/page-2.json')
+    .then(data => {
+      data.forEach(item => {
+        Image.allImagesPageTwo.push(new Image(item))
+      });
+    })
+    .then(Image.loadImagesPageTwo);
 };
 
 // Loops through array of images and renders each one
-Image.loadImages = () => {
-  Image.allImages.forEach(images => {
-    images.render();
-    $('main').append(images.toHtml());
+Image.loadImagesPageOne = () => {
+  Image.allImagesPageOne.forEach(images => {
+    $('#form').val(0);
+    images.selectMenu();
+    $('#pageOne').append(images.toHtml());
+  })
+}
+
+Image.loadImagesPageTwo = () => {
+  Image.allImagesPageTwo.forEach(images => {
+    $('#form').val(0);
+    images.selectMenu();
+    $('#pageTwo').append(images.toHtml());
   })
 }
 
@@ -98,4 +127,8 @@ $('#close').on('click', function() {
 })
 
 // Document ready function
-$(() => Image.getJson());
+$(document).ready(function() {
+  Image.getJsonPageOne();
+  Image.getJsonPageTwo();
+  $('.tab-content').hide();
+});
