@@ -21,7 +21,7 @@ Image.prototype.render = function() {
   let $imageClone = $(imageClone[0].content);
 
   $imageClone.find('h2').text(this.title);
-  $imageClone.find('img').attr({'src': this.image_url, 'class': 'lightbox'});
+  $imageClone.find('img').attr({'src': this.image_url, 'class': 'sourceImg', 'alt': this.title});
   $imageClone.find('p').text(`Number of Horns: ${this.horns}`);
   $imageClone.find('section').addClass(`${this.keyword} ${this.horns} ${this.removeSpace}`)
   $imageClone.attr('class', this.title);
@@ -81,13 +81,19 @@ $(`select[name='images'`).on('change', function() {
 });
 
 // jQuery lightbox trigger
-$('.lightbox').click(function() {
-  $('#lightbox').addClass('open');
+$('main').on('click', '.sourceImg', function(e) {
+  e.preventDefault();
+  let imgSource = $(this).attr('src');
+  console.log(imgSource)
+  $('#modalImg').attr('src', imgSource);
+  $('#lightbox-modal').show();
 })
 
-// $('#close').click(function() {
-//   $('#lightbox').removeClass('open')
-// });
+$('#close').on('click', function() {
+  $('#lightbox-modal').hide();
+})
+
+
 
 // Document ready function
 $(() => Image.getJson());
