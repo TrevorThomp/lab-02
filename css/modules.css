@@ -12,13 +12,13 @@
 
 #content p {
   text-align:center; 
-  font-size:12px; 
+  font-size: 1.4em; 
 }
 
 #lightbox-modal #content {
   background-color: white;
-  width: 60%;
-  height: 50%;
+  width: 40%;
+  height: 40%;
   margin: auto;
   margin-top: 200px;
 }
@@ -30,6 +30,7 @@
 }
 
 #modalTitle {
+  font-size: 1.5em;
   padding-top: 20px;
 }
 
