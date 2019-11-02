@@ -149,5 +149,4 @@ $('#searchBar').on('keyup', () => {
 $(document).ready(function() {
   Image.getJsonPageOne();
   Image.getJsonPageTwo();
-  $('.tab-content').hide();
 });
