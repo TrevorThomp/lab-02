@@ -3,27 +3,38 @@
 // Navigation Handler
 $('nav a').on('click', function() {
   let $pageChoice = $(this).data('tab');
-  $('.tab-content').hide();
-  $('#' + $pageChoice).fadeIn();
+  if ($pageChoice === 'pageOne') {
+    Image.displayChoice = 1;
+    Image.allImages.length = 0;
+    $('optgroup').empty();
+    $('#pageOne').empty();
+    Image.getJson();
+    $('#' + $pageChoice).fadeIn();
+  }
+  if ($pageChoice === 'pageTwo') {
+    Image.displayChoice = 2;
+    Image.allImages.length = 0;
+    $('optgroup').empty();
+    $('#pageOne').empty();
+    Image.getJson();
+    $('#' + $pageChoice).fadeIn();
+  }
 })
 
 // Image constructor function
 function Image(img) {
-  this.image_url = img.image_url;
-  this.title = img.title;
-  this.description = img.description;
-  this.keyword = img.keyword;
-  this.horns = img.horns;
+  for(let prop in img){
+    this[prop] = img[prop];
+  }
   // If apostrophes exists, remove
   this.removeApostrophe = this.title.replace(/'/g, '');
   // If whitespace exists, remove
   this.removeSpace = this.removeApostrophe.replace(/ /g, '');
-}
+};
 
 // Array that holds Page 1 objects
-Image.allImagesPageOne = [];
-// Array that holds Page 2 objects
-Image.allImagesPageTwo = [];
+Image.allImages = [];
+Image.displayChoice = 1;
 
 // Handlebar template compiler
 Image.prototype.toHtml = function() {
@@ -64,43 +75,22 @@ Image.prototype.selectMenu = function() {
   });
 };
 
-
-
 // Retrieve JSON data from page-1.json and push into array
-Image.getJsonPageOne = () => {
-  $.get('../data/page-1.json')
+Image.getJson = () => {
+  $.get(`../data/page-${Image.displayChoice}.json`)
     .then(data => {
       data.forEach(item => {
-        Image.allImagesPageOne.push(new Image(item))
+        Image.allImages.push(new Image(item))
       });
     })
-    .then(Image.loadImagesPageOne);
-};
-
-// Retrieve JSON data from page-2.json and push into array
-Image.getJsonPageTwo = () => {
-  $.get('../data/page-2.json')
-    .then(data => {
-      data.forEach(item => {
-        Image.allImagesPageTwo.push(new Image(item))
-      });
-    })
-    .then(Image.loadImagesPageTwo);
+    .then(Image.prototype.loadImages);
 };
 
 // Loops through array of images and renders each one
-Image.loadImagesPageOne = () => {
-  Image.allImagesPageOne.forEach(images => {
-    images.selectMenu();
+Image.prototype.loadImages = () => {
+  Image.allImages.forEach(images => {
     $('#pageOne').append(images.toHtml());
-  })
-}
-
-// Loops through array of images and renders each one
-Image.loadImagesPageTwo = () => {
-  Image.allImagesPageTwo.forEach(images => {
     images.selectMenu();
-    $('#pageTwo').append(images.toHtml());
   })
 }
 
@@ -114,13 +104,9 @@ $(`select[name='images'`).on('change', function() {
 // jQuery modal trigger
 $('main').on('click', '.sourceImg', function(e) {
   e.preventDefault();
-  let imgSource = $(this).attr('src');
-  let imgParent = $(this).parent();
-  let modalTitle = $(imgParent).find('h2').text();
-  let modalDesc = $(imgParent).find('p').text();
-  $('#modalTitle').text(modalTitle);
-  $('#modalDesc').text(modalDesc);
-  $('#modalImg').attr('src', imgSource);
+  $('#modalTitle').text($($(this).parent()).find('h2').text());
+  $('#modalDesc').text($($(this).parent()).find('p').text());
+  $('#modalImg').attr('src', $(this).attr('src'));
   $('#lightbox-modal').fadeIn();
 })
 
@@ -147,6 +133,5 @@ $('#searchBar').on('keyup', () => {
 
 // Document ready function
 $(document).ready(function() {
-  Image.getJsonPageOne();
-  Image.getJsonPageTwo();
+  Image.getJson();
 });
